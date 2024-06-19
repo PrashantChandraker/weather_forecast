@@ -29,10 +29,20 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     List<Placemark> placemark =
         await placemarkFromCoordinates(lat, lon); // lattitude and longitude
         print(placemark);
+        Placemark place = placemark[0];
+        setState(() {
+          city = place.locality!; // locality is the feild name in the placemark inside geolocator package
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        Container(
+          child: Text(city),
+        )
+      ],
+    );
   }
 }
